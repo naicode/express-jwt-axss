@@ -171,7 +171,8 @@ describe('work tests', function () {
 
     req.headers = {};
     req.headers.authorization = 'Bearer ' + token;
-    expressjwt({secret: secret})(req, res, function() {
+    expressjwt({secret: secret})(req, res, function(err) {
+      assert.equal(err, undefined);
       assert.equal('bar', req.user.foo);
     });
   });
@@ -182,7 +183,8 @@ describe('work tests', function () {
 
     req.headers = {};
     req.headers.authorization = 'Bearer ' + token;
-    expressjwt({secret: secret})(req, res, function() {
+    expressjwt({secret: secret})(req, res, function(err) {
+      assert.equal(err, undefined);
       assert.equal('bar', req.user.foo);
     });
   });
@@ -193,7 +195,8 @@ describe('work tests', function () {
 
     req.headers = {};
     req.headers.authorization = 'Bearer ' + token;
-    expressjwt({secret: secret, userProperty: 'auth'})(req, res, function() {
+    expressjwt({secret: secret, userProperty: 'auth'})(req, res, function(err) {
+      assert.equal(err, undefined);
       assert.equal('bar', req.auth.foo);
     });
   });
@@ -202,17 +205,18 @@ describe('work tests', function () {
     req = {};
     expressjwt({ secret: 'shhhh', credentialsRequired: false })(req, res, function(err) {
       assert(typeof err === 'undefined');
+      assert.equal(undefined, req.user);
     });
   });
 
-  it('should work if token is expired and credentials are not required', function() {
+  it('should not work if token is invalide (expired) even if no credentials are required', function() {
     var secret = 'shhhhhh';
     var token = jwt.sign({foo: 'bar', exp: 1382412921}, secret);
 
     req.headers = {};
     req.headers.authorization = 'Bearer ' + token;
     expressjwt({ secret: secret, credentialsRequired: false })(req, res, function(err) {
-      assert(typeof err === 'undefined');
+      assert(typeof err !== 'undefined');
       assert(typeof req.user === 'undefined')
     });
   });
@@ -239,11 +243,12 @@ describe('work tests', function () {
     expressjwt({
       secret: secret,
       getToken: getTokenFromQuery
-    })(req, res, function() {
+    })(req, res, function(err) {
+      assert.equal(err, undefined);
       assert.equal('bar', req.user.foo);
     });
   });
-  
+
   it('should work with a secretCallback function that accepts header argument', function() {
     var secret = 'shhhhhh';
     var secretCallback = function(req, headers, payload, cb) {
@@ -255,7 +260,8 @@ describe('work tests', function () {
 
     req.headers = {};
     req.headers.authorization = 'Bearer ' + token;
-    expressjwt({secret: secretCallback})(req, res, function() {
+    expressjwt({secret: secretCallback})(req, res, function(err) {
+      assert.equal(err, undefined);
       assert.equal('bar', req.user.foo);
     });
   });
