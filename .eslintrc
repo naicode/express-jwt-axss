@@ -1,0 +1,32 @@
+{
+    "parser": "babel-eslint",
+    "rules": {
+        "indent": [
+            2,
+            2
+        ],
+        "quotes": [
+            2,
+            "single"
+        ],
+        "linebreak-style": [
+            2,
+            "unix"
+        ],
+        "semi": [
+            2,
+            "always"
+        ],
+
+        "no-shadow": 0,
+
+        "no-underscore-dangle": 0,
+        "camelcase": 1,
+        "no-mixed-requires": 0,
+        "curly": 0
+    },
+    "env": {
+        "es6": true,
+        "node": true
+    }
+}
