@@ -40,7 +40,8 @@ Pleas visit the original project for examples and documentation of the usage.
 ## Issue Reporting
 
 If you have found a bug or security vulnerability please check if it is  also contained in the
-orginal project.  If so pleas report it there like described the github repo.
+orginal project.  If so please report it there like described in the orginal github repo.
+Else you can use the Issue Tracker
 
 ## Tests
 
