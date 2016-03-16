@@ -1,3 +1,5 @@
+**Note that this fork is no longer maintained**
+
 # express-jwt-axss
 
 [![Build](https://travis-ci.org/naicode/express-jwt-axss.png)](http://travis-ci.org/naicode/express-jwt-axss)
